@@ -14,7 +14,7 @@ const StackNavigator = () => {
         <Stack.Screen
           name="Home"
           component={HomeScreen}
-          options={{ title: "Calorie Counter" }}
+          options={{ title: "Calorie Tracker" }}
         />
         <Stack.Screen
           name="AddFood"

@@ -1,21 +1,18 @@
 // components/AddFood.js
 import React, { useState } from "react";
 import { View, TextInput, Button, StyleSheet } from "react-native";
+import Dropdown from "react-native-input-select";
 
 const AddFood = ({ addFood }) => {
   const [name, setName] = useState("");
-  const [calories, setCalories] = useState("");
-  const [protein, setProtein] = useState("");
-  const [carbs, setCarbs] = useState("");
-  const [fat, setFat] = useState("");
+  const [amount, setAmount] = useState("");
+  const [unit, setUnit] = useState("g");
 
   const handleSubmit = () => {
-    addFood({ name, calories, protein, carbs, fat });
+    addFood({ name, amount, unit });
     setName("");
-    setCalories("");
-    setProtein("");
-    setCarbs("");
-    setFat("");
+    setAmount("");
+    setUnit("");
   };
 
   return (
@@ -28,19 +25,30 @@ const AddFood = ({ addFood }) => {
       />
       <TextInput
         style={styles.input}
-        placeholder="Calories"
-        value={calories}
-        onChangeText={setCalories}
+        placeholder="Amount"
+        value={amount}
+        onChangeText={setAmount}
         keyboardType="numeric"
       />
-      <TextInput
+      <Dropdown
+        label="Unit"
+        placeholder=""
+        options={[
+          { label: "Grams", value: "g" },
+          { label: "Ounce", value: "oz" },
+          { label: "Each", value: "each" },
+        ]}
+        selectedValue={unit}
+        onValueChange={setUnit}
+      />
+      {/* <TextInput
         style={styles.input}
-        placeholder="Protein"
-        value={protein}
-        onChangeText={setProtein}
+        placeholder="Unit"
+        value={unit}
+        onChangeText={setUnit}
         keyboardType="numeric"
-      />
-      <TextInput
+      /> */}
+      {/* <TextInput
         style={styles.input}
         placeholder="Carbs"
         value={carbs}
@@ -53,7 +61,7 @@ const AddFood = ({ addFood }) => {
         value={fat}
         onChangeText={setFat}
         keyboardType="numeric"
-      />
+      /> */}
       <Button title="Add Food" onPress={handleSubmit} />
     </View>
   );
